@@ -2,42 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Start Page</title>
 </head>
 <body>
+<h1>All Challenges</h1>
+<ul id="challenges">
+</ul>
 
-<div>
-
-    <p class="text">Welcome to our Treasure Hunt Web Application.
-        The Group members are: -Eleana Savva -Antreas Kyriakou.<br>
-        In this app the aim is to create a treasure hunt with the
-        help of an API server that provides questions and tracks our
-        location in order to find the clues.<br>
-        Below you can find our twitter page for more information and updates!
-    </p>
-</div>
-<div class="buttons">
-    <h1>Twitter/X </h1>
-    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="Hi! This is a team A6!" data-via="ScavengerHunt__" data-hashtags="C01111" data-show-count="false">Tweet</a>
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    <!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-RB3CP54FGH"></script>
-    <script>   window.dataLayer = window.dataLayer || [];   function gtag(){dataLayer.push(arguments);}   gtag('js', new Date());   gtag('config', 'G-RB3CP54FGH'); </script>
-    <br>
-    <a href="startPage.html"><button type="button" class="button">Start</button></a>
-</div>
-
-<h3>Group Members:</h3>
-<p>-Eleana Savva <br>-Andreas Kyriakou </p>
-</div>
-
-<h1>Twitter/X </h1>
-<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="Hi! This is a team A6!" data-via="ScavengerHunt__" data-hashtags="C01111" data-show-count="false">Tweet</a>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-<!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-RB3CP54FGH"></script>
-<script>   window.dataLayer = window.dataLayer || [];   function gtag(){dataLayer.push(arguments);}   gtag('js', new Date());   gtag('config', 'G-RB3CP54FGH'); </script>
-<br>
-<button type="button">Start</button>
-
+<script>
+    function getChallenges() {
+        let challengesList = document.getElementById("challenges");
+        fetch("https://codecyprus.org/th/api/list")
+            .then(response => response.json()) //Parse JSON text to JavaScript object
+            .then(jsonObject => {
+                console.log(jsonObject);
+                let treasureHuntsArray = jsonObject.treasureHunts;
+                for (let i = 0; i < treasureHuntsArray.length; i++) {
+                    let listItem = document.createElement("li");
+                    listItem.innerHTML = treasureHuntsArray[i].name;
+                    challengesList.appendChild(listItem);
+                    uuid = treasureHuntsArray[i].uuid;
+                    listItem.innerHTML = `<a href="https://codecyprus.org/th/api/start?player=Eleana&app=A6_App&treasure-hunt-id=${uuid}">` + treasureHuntsArray[i].name + `</a>`;
+                }
+            });
+    }
+    getChallenges();
+</script>
 </body>
 </html>
