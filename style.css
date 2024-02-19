@@ -2,14 +2,37 @@
     text-align: center;
     font-family: Arial sans-serif;
     font-weight: bold;
-}
-.buttons{
-    text-align: center;
+    border-style: solid;
+    border-radius: 30%;
 }
 .TreasureHunt{
-
+    text-align: center;
+    font-family: Arial sans-serif;
+    font-weight: bold;
+    display: inline-block;
+    margin: 0 10px ;
+}
+.image_header{
+    width: 60px;
+    height:60px;
+}
+.buttons_header{
+    text-align: right;
+}
+.header{
+    background-color: darkgray;
+}
+.body{
+    background-color: #808080;
 }
 .image{
-    width: 100px;
-    height: 100px;
+    width: 300px;
+    height: 300px;
+}
+.button{
+    text-align: center;
+    display: inline-block;
+    margin: 0 50px;
+    font-size: 24px;
+    border: none;
 }
